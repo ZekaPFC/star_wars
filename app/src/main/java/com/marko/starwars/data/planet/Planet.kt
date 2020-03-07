@@ -16,5 +16,6 @@ data class Planet(
     @ColumnInfo(name = "terrain") val terrain: String,
     @ColumnInfo(name = "surface_water") val surfaceWatter: String,
     @ColumnInfo(name = "population") val population: String,
-    @ColumnInfo(name = "residents_url") val residentsUrl: List<String>
+    @ColumnInfo(name = "residents_url") val residentsUrl: List<String>,
+    @ColumnInfo(name = "likes") val likes: Int
 )
