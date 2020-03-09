@@ -1,4 +1,4 @@
-package com.marko.starwars.UI
+package com.marko.starwars.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

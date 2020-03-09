@@ -1,7 +1,7 @@
 package com.marko.starwars.DI.component
 
 import com.marko.starwars.DI.scope.FragmentScope
-import com.marko.starwars.UI.PlanetFragment.PlanetFragment
+import com.marko.starwars.ui.planet_fragment.PlanetFragment
 import dagger.Subcomponent
 
 @FragmentScope

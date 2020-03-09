@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.MainActivity">
+    tools:context=".ui.MainActivity">
 
 
     <fragment
         android:id="@+id/headlines_fragment"
-        android:name="com.marko.starwars.UI.PlanetFragment.PlanetFragment"
+        android:name="com.marko.starwars.ui.planet_fragment.PlanetFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

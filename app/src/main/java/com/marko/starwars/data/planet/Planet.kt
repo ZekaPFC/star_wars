@@ -1,5 +1,6 @@
 package com.marko.starwars.data.planet
 
+import androidx.databinding.Bindable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

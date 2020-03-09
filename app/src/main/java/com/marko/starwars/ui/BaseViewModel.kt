@@ -1,4 +1,4 @@
-package com.marko.starwars.UI
+package com.marko.starwars.ui
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
