@@ -19,7 +19,7 @@ class NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://private-anon-8d68228f73-starwars2.apiary-mock.com/")
+            .baseUrl("https://private-anon-f11aca4ef0-starwars2.apiary-mock.com/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

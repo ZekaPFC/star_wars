@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,6 +9,159 @@
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:background="@color/oceanBlue">
+
+            <TextView
+                android:id="@+id/tv_planet_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/card_view"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/like"
+                android:src="@drawable/like_outline" />
+
+            <TextView
+                android:id="@+id/tv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_like"
+                android:layout_toEndOf="@id/iv_like"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="12sp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="5dp"
+                app:contentPadding="16dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_rotation_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_orbital_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/tv_rotation_period"
+                        android:layout_alignParentEnd="true"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_diameter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_rotation_period"
+                        android:layout_marginTop="16dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_climate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/tv_diameter"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="16dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_gravity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_diameter"
+                        android:layout_marginTop="16dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_terrain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/tv_gravity"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="16dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_surface_water"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_gravity"
+                        android:layout_marginTop="16dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_population"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/tv_surface_water"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="16dp"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/round_button"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="5dp"
+                android:paddingStart="80dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="80dp"
+                android:paddingBottom="10dp"
+                android:text="@string/residents"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="120dp" />
+</FrameLayout>

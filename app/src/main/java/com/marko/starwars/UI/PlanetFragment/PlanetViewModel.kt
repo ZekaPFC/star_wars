@@ -1,5 +1,6 @@
 package com.marko.starwars.UI.PlanetFragment
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.marko.starwars.UI.BaseViewModel
 import com.marko.starwars.data.planet.Planet
@@ -19,28 +20,30 @@ class PlanetViewModel @Inject constructor(
     }
 
     fun refreshPlanet(id: Int) {
-        compositeDisposable.add(planetRepository.refreshPlanet(id).subscribe({}, {}))
+        compositeDisposable.add(planetRepository.refreshPlanet(id).subscribe({
+            Log.d("planet", "Success")
+        }, { Log.d("planet", it.localizedMessage) }))
     }
 
     fun getPlanet(id: Int) {
         compositeDisposable.add(planetRepository.getPlanet(id)
             .doOnSubscribe { startLoading() }
             .subscribe({
-                emitLoadedData(it)
                 stopLoading()
+                emitLoadedData(it)
             }, { it.localizedMessage })
         )
     }
 
     private fun startLoading() {
-        loadingLiveData.value = true
+        loadingLiveData.postValue(true)
     }
 
     private fun stopLoading() {
-        loadingLiveData.value = false
+        loadingLiveData.postValue(false)
     }
 
     private fun emitLoadedData(planet: Planet) {
-        planetMLiveData.value = planet
+        planetMLiveData.postValue(planet)
     }
 }
