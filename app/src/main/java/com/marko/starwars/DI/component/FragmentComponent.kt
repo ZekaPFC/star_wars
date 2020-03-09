@@ -1,6 +1,7 @@
 package com.marko.starwars.DI.component
 
 import com.marko.starwars.DI.scope.FragmentScope
+import com.marko.starwars.ui.EnlargedProfileImageFragment
 import com.marko.starwars.ui.planet_fragment.PlanetFragment
 import dagger.Subcomponent
 
@@ -13,4 +14,5 @@ interface FragmentComponent {
     }
 
     fun inject(planetFragment: PlanetFragment)
+    fun inject(enlargedProfileImageFragment: EnlargedProfileImageFragment)
 }

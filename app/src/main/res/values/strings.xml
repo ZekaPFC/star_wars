@@ -12,4 +12,6 @@
     <string name="likes">Likes</string>
     <string name="residents">Residents</string>
     <string name="space">&#160;</string>
+    <string name="planet_image_large">Large Planet Image</string>
+    <string name="go_back">Go Back</string>
 </resources>

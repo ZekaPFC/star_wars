@@ -1,9 +1,11 @@
 package com.marko.starwars.ui.planet_fragment
 
 import android.util.Log
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
 import com.marko.starwars.data.planet.Planet
 import com.marko.starwars.data.planet.PlanetRepository
 import com.marko.starwars.ui.BaseViewModel
@@ -94,6 +96,11 @@ class PlanetViewModel @Inject constructor(
         _isLoading.postValue(false)
     }
 
+    fun navigateToEnlargeProfilePicScreen(view: View) {
+        view.findNavController()
+            .navigate(PlanetFragmentDirections.actionPlanetFragmentToEnlargedProfileImageFragment(_imageUrl.value!!))
+    }
+
     private fun bindViews(planet: Planet) {
         val populationInMilion: Int = planet.population!!.toInt().div(10000000)
         _diameter.postValue(": ".plus(planet.diameter.toString()))
@@ -111,11 +118,12 @@ class PlanetViewModel @Inject constructor(
 
     fun likePlanet() {
         if (_isLiked.value == false || _isLiked.value == null) {
-            compositeDisposable.add(planetRepository.likePlanet(
-                10, _planetContent.value!!.likes.plus(1)
-            ).subscribe({
-                setLikePlanetDrawable()
-            }, { Log.d("LikeError", it.localizedMessage) })
+            compositeDisposable.add(
+                planetRepository.likePlanet(
+                    10, _planetContent.value!!.likes.plus(1)
+                ).subscribe({
+                    setLikePlanetDrawable()
+                }, { Log.d("LikeError", it.localizedMessage) })
             )
         }
     }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/planetFragment">
+
+    <fragment
+        android:id="@+id/planetFragment"
+        android:name="com.marko.starwars.ui.planet_fragment.PlanetFragment"
+        android:label="PlanetFragment"
+        tools:layout="@layout/planet_fragment">
+        <action
+            android:id="@+id/action_planetFragment_to_enlargedProfileImageFragment"
+            app:destination="@id/enlargedProfileImageFragment"
+            app:popUpTo="@id/planetFragment"
+            app:popUpToInclusive="false" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/enlargedProfileImageFragment"
+        android:name="com.marko.starwars.ui.EnlargedProfileImageFragment"
+        android:label="EnlargedProfileImageFragment">
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
