@@ -62,7 +62,8 @@
                     android:layout_above="@+id/card_view"
                     android:layout_marginBottom="16dp"
                     android:contentDescription="@string/like"
-                    android:src="@drawable/ic_like_outline" />
+                    android:onClick="@{()->viewmodel.likePlanet()}"
+                    android:src="@{viewmodel.isLikedLiveData()? @drawable/ic_like_filled : @drawable/ic_like_outline}" />
 
                 <TextView
                     android:id="@+id/tv_like"
@@ -72,7 +73,7 @@
                     android:layout_toEndOf="@id/iv_like"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
-                    android:text="@{viewmodel.likesLiveData + @string/likes}"
+                    android:text="@{viewmodel.likesLiveData + @string/space + @string/likes}"
                     android:textSize="12sp" />
 
                 <androidx.cardview.widget.CardView

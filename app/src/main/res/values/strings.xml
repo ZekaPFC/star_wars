@@ -11,4 +11,5 @@
     <string name="like">Like</string>
     <string name="likes">Likes</string>
     <string name="residents">Residents</string>
+    <string name="space">&#160;</string>
 </resources>

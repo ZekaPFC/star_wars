@@ -5,8 +5,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class PlanetRepository @Inject constructor(
-    val planetLocalDS: PlanetLocalDS,
-    val planetRemoteDS: PlanetRemoteDS
+    private val planetLocalDS: PlanetLocalDS,
+    private val planetRemoteDS: PlanetRemoteDS
 ) {
     fun getPlanet(id: Int): Observable<Planet> {
         return planetLocalDS.getPlanet(id)
