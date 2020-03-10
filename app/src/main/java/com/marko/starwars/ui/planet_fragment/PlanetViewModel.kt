@@ -2,10 +2,12 @@ package com.marko.starwars.ui.planet_fragment
 
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
+import com.marko.starwars.di.scope.FragmentScope
 import com.marko.starwars.data.planet.Planet
 import com.marko.starwars.data.planet.PlanetRepository
 import com.marko.starwars.ui.BaseViewModel
@@ -16,9 +18,9 @@ import de.hdodenhof.circleimageview.CircleImageView
 import javax.inject.Inject
 
 
+@FragmentScope
 class PlanetViewModel @Inject constructor(
     private val planetRepository: PlanetRepository,
-    sizeUtil: SizeUtil,
     private val prefUtil: PrefUtil
 ) : BaseViewModel() {
     private val _planetContent = MutableLiveData<Planet>()
@@ -59,11 +61,8 @@ class PlanetViewModel @Inject constructor(
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    val imageSize: Int = sizeUtil.dpToPx(250f).toInt()
-
     private val _isLiked = MutableLiveData<Boolean>()
     val isLikedLiveData: LiveData<Boolean> = _isLiked
-
 
     init {
         getPlanet(10)
@@ -98,7 +97,11 @@ class PlanetViewModel @Inject constructor(
 
     fun navigateToEnlargeProfilePicScreen(view: View) {
         view.findNavController()
-            .navigate(PlanetFragmentDirections.actionPlanetFragmentToEnlargedProfileImageFragment(_imageUrl.value!!))
+            .navigate(
+                PlanetFragmentDirections.actionPlanetFragmentToEnlargedProfileImageFragment(
+                    _imageUrl.value!!
+                )
+            )
     }
 
     private fun bindViews(planet: Planet) {
@@ -137,14 +140,7 @@ class PlanetViewModel @Inject constructor(
         _isLiked.value = true
     }
 
-    companion object {
-        @BindingAdapter("imageUrl", "imageSize")
-        @JvmStatic
-        fun loadImage(view: CircleImageView, imageUrl: String?, imageSize: Int) {
-            Picasso.get()
-                .load(imageUrl)
-                .resize(imageSize, imageSize)
-                .into(view)
-        }
+    fun navigateToResidentList(view: View){
+        view.findNavController().navigate(PlanetFragmentDirections.actionPlanetFragmentToResidentListFragment())
     }
 }

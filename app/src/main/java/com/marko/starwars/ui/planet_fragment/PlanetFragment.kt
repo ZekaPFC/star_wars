@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.marko.starwars.DI.component.FragmentComponent
-import com.marko.starwars.DI.scope.FragmentScope
+import com.marko.starwars.di.component.FragmentComponent
+import com.marko.starwars.di.scope.FragmentScope
 import com.marko.starwars.databinding.PlanetFragmentBinding
 import com.marko.starwars.ui.MainActivity
 import javax.inject.Inject
@@ -18,6 +18,11 @@ class PlanetFragment : Fragment() {
     private lateinit var fragmentComponent: FragmentComponent
     @Inject
     lateinit var planetViewModel: PlanetViewModel
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideAppBar()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,4 +40,5 @@ class PlanetFragment : Fragment() {
         planetDataBinding.lifecycleOwner = this
         return planetDataBinding.root
     }
+
 }

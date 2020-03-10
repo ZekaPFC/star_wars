@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <import type="android.view.View" />
+
         <import type="android.content.res.Resources" />
+
         <variable
             name="viewmodel"
-            type="com.marko.starwars.ui.planet_fragment.PlanetViewModel" />
+            type="com.marko.starwars.ui.planet_fragment.PlanetViewModel"
+            />
     </data>
 
     <FrameLayout
@@ -173,6 +175,7 @@
                     android:background="@drawable/round_button"
                     android:drawableEnd="@drawable/ic_arrow_right"
                     android:drawablePadding="5dp"
+                    android:onClick="@{(view)->viewmodel.navigateToResidentList(view)}"
                     android:paddingStart="80dp"
                     android:paddingTop="10dp"
                     android:paddingEnd="80dp"
@@ -190,9 +193,9 @@
             android:layout_gravity="center"
             android:layout_marginBottom="120dp"
             android:onClick="@{(view)->viewmodel.navigateToEnlargeProfilePicScreen(view)}"
+            app:imageHeightInDp="@{250f}"
             app:imageUrl="@{viewmodel.imageUrlLiveData}"
-            app:imageSize="@{viewmodel.imageSize}"
-            />
+            app:imageWidthInDp="@{250f}" />
 
     </FrameLayout>
 </layout>

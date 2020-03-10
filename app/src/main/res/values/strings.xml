@@ -14,4 +14,6 @@
     <string name="space">&#160;</string>
     <string name="planet_image_large">Large Planet Image</string>
     <string name="go_back">Go Back</string>
+    <string name="resident_list_title">Resident List</string>
+    <string name="resident_image">Resident Image</string>
 </resources>

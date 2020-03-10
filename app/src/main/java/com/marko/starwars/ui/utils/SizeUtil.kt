@@ -1,17 +1,18 @@
 package com.marko.starwars.ui.utils
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.TypedValue
 
-class SizeUtil(val context: Context) {
+class SizeUtil() {
 
-        fun dpToPx(dp: Float): Float {
+    companion object {
+        fun dpToPx(context: Context,dp: Float): Float {
             return TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 dp,
                 context.resources.displayMetrics
             )
         }
+    }
 
 }

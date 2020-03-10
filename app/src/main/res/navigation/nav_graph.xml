@@ -15,6 +15,11 @@
             app:destination="@id/enlargedProfileImageFragment"
             app:popUpTo="@id/planetFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_planetFragment_to_residentListFragment"
+            app:destination="@id/residentListFragment"
+            app:popUpTo="@id/planetFragment"
+            app:popUpToInclusive="false" />
 
     </fragment>
     <fragment
@@ -25,5 +30,9 @@
             android:name="imageUrl"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/residentListFragment"
+        android:name="com.marko.starwars.ui.residents_list_fragment.ResidentListFragment"
+        android:label="ResidentListFragment" />
 
 </navigation>

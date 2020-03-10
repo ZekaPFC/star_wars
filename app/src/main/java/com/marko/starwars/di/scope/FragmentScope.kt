@@ -1,4 +1,4 @@
-package com.marko.starwars.DI.scope
+package com.marko.starwars.di.scope
 
 import javax.inject.Scope
 

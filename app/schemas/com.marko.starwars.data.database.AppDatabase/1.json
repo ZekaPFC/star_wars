@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e7bd766a264584074e79d6950dc9d02b",
+    "identityHash": "d5bba148811dadfadfecfaba6d93b3ff",
     "entities": [
       {
         "tableName": "planet",
@@ -75,7 +75,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "image_url",
+            "fieldPath": "imageUrl",
             "columnName": "picture_url",
             "affinity": "TEXT",
             "notNull": false
@@ -92,7 +92,7 @@
       },
       {
         "tableName": "resident",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `height` INTEGER NOT NULL, `mass` INTEGER NOT NULL, `hair_color` TEXT NOT NULL, `skin_color` TEXT NOT NULL, `eye_color` TEXT NOT NULL, `birth_yeah` TEXT NOT NULL, `gender` TEXT NOT NULL, `image_url` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `height` TEXT NOT NULL, `mass` TEXT NOT NULL, `hair_color` TEXT NOT NULL, `skin_color` TEXT NOT NULL, `eye_color` TEXT NOT NULL, `birth_yeah` TEXT NOT NULL, `gender` TEXT NOT NULL, `image_url` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "residentId",
@@ -109,13 +109,13 @@
           {
             "fieldPath": "height",
             "columnName": "height",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "mass",
             "columnName": "mass",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -159,7 +159,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -168,7 +168,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e7bd766a264584074e79d6950dc9d02b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd5bba148811dadfadfecfaba6d93b3ff')"
     ]
   }
 }

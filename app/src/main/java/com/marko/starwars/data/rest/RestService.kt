@@ -6,6 +6,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Url
 
 interface RestService {
 
@@ -15,6 +16,6 @@ interface RestService {
     @POST("planets/{id}/like")
     fun likePlanet(@Path("id") id: Int): Single<Planet>
 
-    @GET("residents/{id}")
-    fun getResident(@Path("id") id: Int): Single<Resident>
+    @GET
+    fun getResident(@Url url: String): Single<Resident>
 }

@@ -1,9 +1,9 @@
 package com.marko.starwars.base
 
 import android.app.Application
-import com.marko.starwars.DI.component.AppComponent
-import com.marko.starwars.DI.component.DaggerAppComponent
-import com.marko.starwars.DI.module.AppModule
+import com.marko.starwars.di.component.AppComponent
+import com.marko.starwars.di.component.DaggerAppComponent
+import com.marko.starwars.di.module.AppModule
 
 class BaseApp : Application() {
 

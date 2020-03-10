@@ -7,13 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.marko.starwars.DI.scope.FragmentScope
+import com.marko.starwars.di.scope.FragmentScope
 import com.marko.starwars.databinding.ProfileImageFragmentBinding
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.profile_image_fragment.*
 
 @FragmentScope
 class EnlargedProfileImageFragment : Fragment() {
+
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideAppBar()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

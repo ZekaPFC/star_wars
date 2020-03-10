@@ -1,21 +1,50 @@
 package com.marko.starwars.data.resident
 
+import com.marko.starwars.data.planet.PlanetRemoteDS
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 
-class ResidentsRepository(
-    private val residentLocalDS: ResidentDataSource,
-    private val residentRemoteDS: ResidentDataSource
+class ResidentsRepository @Inject constructor(
+    private val residentLocalDS: ResidentLocalDS,
+    private val residentRemoteDS: ResidentRemoteDS,
+    private val planetRemoteDS: PlanetRemoteDS
 ) {
 
-    fun getResident(id: Int): Single<Resident> {
-        return residentRemoteDS.getResident(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-
+    fun getResidents(): Observable<List<Resident>> {
+        return residentLocalDS.getResidents()
     }
 
+    fun fetchResidents(): Completable {
+        var residentId = 0
+        return planetRemoteDS.getPlanet(10)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.computation())
+            .map { planet -> planet.residentsUrl?.map { it } }
+            .flatMap { listOfUrls -> Observable.fromIterable(listOfUrls) }
+            .subscribeOn(Schedulers.io())
+            .flatMapSingle {
+                residentId = getResidentIdFromUrl(it)
+                fetchResident(it)
+            }
+            .flatMapCompletable { saveResident(residentId, it) }
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    private fun fetchResident(residentUrl: String): Single<Resident> {
+        return residentRemoteDS.getResident(residentUrl)
+    }
+
+    private fun saveResident(id: Int, resident: Resident): Completable {
+        resident.residentId = id
+        return residentLocalDS.saveResident(resident)
+    }
+
+    private fun getResidentIdFromUrl(residentUrl: String): Int {
+        return residentUrl.substring(residentUrl.lastIndexOf("/").plus(1)).toInt()
+    }
 }

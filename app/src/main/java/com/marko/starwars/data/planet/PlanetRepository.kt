@@ -8,13 +8,14 @@ class PlanetRepository @Inject constructor(
     private val planetLocalDS: PlanetLocalDS,
     private val planetRemoteDS: PlanetRemoteDS
 ) {
+
     fun getPlanet(id: Int): Observable<Planet> {
         return planetLocalDS.getPlanet(id)
     }
 
     fun likePlanet(id: Int, likes: Int): Completable {
-        return planetLocalDS.likePlanet(id, likes)
-            .andThen(planetRemoteDS.likePlanet(id,likes))
+        return planetRemoteDS.likePlanet(id, likes)
+            .andThen(planetLocalDS.likePlanet(id, likes))
     }
 
     fun refreshPlanet(id: Int): Completable {

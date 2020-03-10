@@ -1,8 +1,8 @@
-package com.marko.starwars.DI.component
+package com.marko.starwars.di.component
 
-import com.marko.starwars.DI.module.AppModule
-import com.marko.starwars.DI.module.NetworkModule
-import com.marko.starwars.DI.module.SubcomponentModule
+import com.marko.starwars.di.module.AppModule
+import com.marko.starwars.di.module.NetworkModule
+import com.marko.starwars.di.module.SubcomponentModule
 import com.marko.starwars.ui.MainActivity
 import dagger.Component
 import javax.inject.Singleton
