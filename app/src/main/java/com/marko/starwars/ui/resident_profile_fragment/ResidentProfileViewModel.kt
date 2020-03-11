@@ -39,6 +39,7 @@ class ResidentProfileViewModel @Inject constructor(private val residentRepo: Res
     private val _imageUrl = MutableLiveData<String>()
     val imageUrlLiveData: LiveData<String> = _imageUrl
 
+
     fun getResidentById(residentId: Int) {
         compositeDisposable.add(
             residentRepo

@@ -2,19 +2,14 @@ package com.marko.starwars.ui.planet_fragment
 
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
-import com.marko.starwars.di.scope.FragmentScope
 import com.marko.starwars.data.planet.Planet
 import com.marko.starwars.data.planet.PlanetRepository
+import com.marko.starwars.di.scope.FragmentScope
 import com.marko.starwars.ui.BaseViewModel
 import com.marko.starwars.ui.utils.PrefUtil
-import com.marko.starwars.ui.utils.SizeUtil
-import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import javax.inject.Inject
 
 
@@ -64,6 +59,9 @@ class PlanetViewModel @Inject constructor(
     private val _isLiked = MutableLiveData<Boolean>()
     val isLikedLiveData: LiveData<Boolean> = _isLiked
 
+    private val _isDataAvailable = MutableLiveData<Boolean>()
+    val isDataAvailable: LiveData<Boolean> = _isDataAvailable
+
     init {
         getPlanet(10)
         refreshPlanet(10)
@@ -73,7 +71,12 @@ class PlanetViewModel @Inject constructor(
     private fun refreshPlanet(id: Int) {
         compositeDisposable.add(planetRepository.refreshPlanet(id).subscribe({
             Log.d("planet", "Success")
-        }, { Log.d("planet", it.localizedMessage) }))
+        }, {
+            if (_isDataAvailable.value == false) {
+                noContentAvailable()
+            }
+            Log.d("planet", it.localizedMessage)
+        }))
     }
 
     private fun getPlanet(id: Int) {
@@ -81,18 +84,29 @@ class PlanetViewModel @Inject constructor(
             .doOnSubscribe { startLoading() }
             .subscribe({
                 _planetContent.value = it
-                stopLoading()
+                showContent()
                 bindViews(it)
-            }, { it.localizedMessage })
+            }, {
+                noContentAvailable()
+                it.localizedMessage
+            })
         )
     }
 
     private fun startLoading() {
-        _isLoading.postValue(true)
+        _isLoading.value = true
+        _isDataAvailable.value = false
     }
 
-    private fun stopLoading() {
-        _isLoading.postValue(false)
+    private fun noContentAvailable() {
+        _isLoading.value = false
+        _isDataAvailable.value = false
+    }
+
+    private fun showContent() {
+        _isDataAvailable.value = true
+        _isLoading.value = false
+
     }
 
     fun navigateToEnlargeProfilePicScreen(view: View) {
@@ -140,7 +154,8 @@ class PlanetViewModel @Inject constructor(
         _isLiked.value = true
     }
 
-    fun navigateToResidentList(view: View){
-        view.findNavController().navigate(PlanetFragmentDirections.actionPlanetFragmentToResidentListFragment())
+    fun navigateToResidentList(view: View) {
+        view.findNavController()
+            .navigate(PlanetFragmentDirections.actionPlanetFragmentToResidentListFragment())
     }
 }

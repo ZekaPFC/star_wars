@@ -10,14 +10,20 @@
 
         <variable
             name="viewmodel"
-            type="com.marko.starwars.ui.planet_fragment.PlanetViewModel"
-            />
+            type="com.marko.starwars.ui.planet_fragment.PlanetViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/no_data_available"
+            android:visibility="@{!viewmodel.isLoading() &amp;&amp; !viewmodel.isDataAvailable()? View.VISIBLE: View.GONE}" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -31,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="@{!viewmodel.isLoading()?View.VISIBLE:View.GONE}"
+            android:visibility="@{viewmodel.isDataAvailable() &amp;&amp; !viewmodel.isLoading()? View.VISIBLE:View.GONE }"
             android:weightSum="2">
 
             <FrameLayout
