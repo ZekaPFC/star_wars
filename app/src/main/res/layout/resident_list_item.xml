@@ -47,30 +47,21 @@
 
                 <TextView
                     android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/ResidentInfoText"
                     android:drawableStart="@drawable/ic_population"
-                    android:drawablePadding="5dp"
-                    android:text="@{resident.name}"
-                    android:textSize="16sp" />
+                    android:text="@{resident.name}" />
 
                 <TextView
                     android:id="@+id/tv_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/ResidentInfoText"
                     android:drawableStart="@drawable/ic_gender"
-                    android:drawablePadding="5dp"
-                    android:text="@{resident.gender}"
-                    android:textSize="16sp" />
+                    android:text="@{resident.gender}" />
 
                 <TextView
                     android:id="@+id/tv_birth_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/ResidentInfoText"
                     android:drawableStart="@drawable/ic_calendar"
-                    android:drawablePadding="5dp"
-                    android:text="@{resident.birthYear}"
-                    android:textSize="16sp" />
+                    android:text="@{resident.birthYear}" />
 
             </LinearLayout>
 

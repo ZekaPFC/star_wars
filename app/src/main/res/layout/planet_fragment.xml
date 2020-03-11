@@ -106,89 +106,62 @@
 
                         <TextView
                             android:id="@+id/tv_orbital_period"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:layout_alignEnd="@+id/tv_rotation_period"
                             android:layout_alignParentEnd="true"
-                            android:text="@{@string/orbital_period + viewmodel.orbitalPeriodLiveData}"
-                            android:textSize="18sp" />
+                            android:text="@{@string/orbital_period + viewmodel.orbitalPeriodLiveData}" />
 
                         <TextView
                             android:id="@+id/tv_diameter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:layout_below="@+id/tv_rotation_period"
-                            android:layout_marginTop="16dp"
-                            android:text="@{@string/diameter + viewmodel.diameterLiveData}"
-                            android:textSize="18sp" />
+                            android:text="@{@string/diameter + viewmodel.diameterLiveData}" />
 
                         <TextView
                             android:id="@+id/tv_climate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:layout_alignBaseline="@id/tv_diameter"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginTop="16dp"
-                            android:text="@{@string/climate + viewmodel.climateLiveData}"
-                            android:textSize="18sp" />
+                            android:text="@{@string/climate + viewmodel.climateLiveData}" />
 
                         <TextView
                             android:id="@+id/tv_gravity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:layout_below="@+id/tv_diameter"
-                            android:layout_marginTop="16dp"
-                            android:text="@{@string/gravity + viewmodel.gravityLiveData}"
-                            android:textSize="18sp" />
+                            android:text="@{@string/gravity + viewmodel.gravityLiveData}" />
 
                         <TextView
                             android:id="@+id/tv_terrain"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:layout_alignBaseline="@id/tv_gravity"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginTop="16dp"
-                            android:text="@{@string/terrain + viewmodel.terrainLiveData}"
-                            android:textSize="18sp" />
+                            android:text="@{@string/terrain + viewmodel.terrainLiveData}" />
 
                         <TextView
                             android:id="@+id/tv_surface_water"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:layout_below="@+id/tv_gravity"
-                            android:layout_marginTop="16dp"
-                            android:text="@{@string/surface_water + viewmodel.surfaceWaterLiveData}"
-                            android:textSize="18sp" />
+                            android:text="@{@string/surface_water + viewmodel.surfaceWaterLiveData}" />
 
                         <TextView
                             android:id="@+id/tv_population"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:layout_alignBaseline="@id/tv_surface_water"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginTop="16dp"
-                            android:text="@{@string/population + viewmodel.populationLiveData}"
-                            android:textSize="18sp" />
+                            android:text="@{@string/population + viewmodel.populationLiveData}" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/BlueRoundButton"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="40dp"
-                    android:background="@drawable/round_button"
                     android:drawableEnd="@drawable/ic_arrow_right"
                     android:drawablePadding="5dp"
                     android:onClick="@{(view)->viewmodel.navigateToResidentList(view)}"
-                    android:paddingStart="80dp"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="80dp"
-                    android:paddingBottom="10dp"
                     android:text="@string/residents"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    />
             </RelativeLayout>
         </LinearLayout>
 
