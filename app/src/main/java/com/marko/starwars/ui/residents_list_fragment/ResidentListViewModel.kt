@@ -21,10 +21,15 @@ class ResidentListViewModel @Inject constructor(private val residentRepo: Reside
         getResidents()
     }
 
+    /**
+     * Residents obtaining method.
+     * We try to refresh residents from network and if there isn't any data even in local DB
+     * we show empty data screen
+     */
     private fun fetchResidentFromNetwork() {
         compositeDisposable.add(residentRepo.fetchResidents()
             .subscribe {
-                if (isDataAvailable.value == null || isDataAvailable.value == false) {
+                if (isDataAvailable.value != true) {
                     noDataAvailable()
                 }
             })
@@ -32,19 +37,20 @@ class ResidentListViewModel @Inject constructor(private val residentRepo: Reside
 
     private fun getResidents() {
         compositeDisposable.add(residentRepo.getResidents()
-            .subscribe(
-                {
-                    _residents.value = it
-                    if (it.isNotEmpty()) {
-                        showContent()
-                    } else {
-                        noDataAvailable()
-                    }
+            .subscribe({ onDataLoaded(it) }, { noDataAvailable() })
+        )
+    }
 
-                },
-                {
-                    noDataAvailable()
-                }
-            ))
+    private fun onDataLoaded(residents: List<Resident>) {
+        _residents.value = residents
+        renderScreenBasedOnResponse(residents)
+    }
+
+    private fun renderScreenBasedOnResponse(residents: List<Resident>) {
+        if (residents.isNullOrEmpty()) {
+            noDataAvailable()
+        } else {
+            showContent()
+        }
     }
 }
