@@ -6,4 +6,5 @@
     <color name="oceanBlue">#7fcdff</color>
     <color name="white">#FFF</color>
     <color name="lightGray">#EBECF0</color>
+    <color name="blackTransparent">#4D000000</color>
 </resources>

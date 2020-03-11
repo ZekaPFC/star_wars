@@ -24,5 +24,13 @@ class ImageLoader @Inject constructor() {
                 .resize(imageWidthInPx, imageHeightInPx)
                 .into(view)
         }
+
+        @BindingAdapter("imageUrl")
+        @JvmStatic
+        fun loadImageInWholeView(view: ImageView, imageUrl: String?) {
+            Picasso.get()
+                .load(imageUrl)
+                .into(view)
+        }
     }
 }

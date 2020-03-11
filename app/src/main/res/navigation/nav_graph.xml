@@ -33,6 +33,20 @@
     <fragment
         android:id="@+id/residentListFragment"
         android:name="com.marko.starwars.ui.residents_list_fragment.ResidentListFragment"
-        android:label="ResidentListFragment" />
+        android:label="ResidentListFragment" >
+        <action
+            android:id="@+id/action_residentListFragment_to_residentProfileFragment"
+            app:destination="@id/residentProfileFragment"
+            app:popUpTo="@id/residentListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/residentProfileFragment"
+        android:name="com.marko.starwars.ui.resident_profile_fragment.ResidentProfileFragment"
+        android:label="ResidentProfileFragment" >
+        <argument
+            android:name="residentId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 
 </navigation>

@@ -1,9 +1,9 @@
 package com.marko.starwars.ui.residents_list_fragment
 
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.marko.starwars.data.resident.Resident
 import javax.inject.Inject
@@ -16,9 +16,11 @@ open class ResidentHolder @Inject constructor(private val viewDataBinding: ViewD
         viewDataBinding.executePendingBindings()
     }
 
-
     fun navigateToAction(view: View) {
-        // view.findNavController().navigate()
-        Toast.makeText(view.context, "Radi", Toast.LENGTH_SHORT).show()
+        view.findNavController()
+            .navigate(
+                ResidentListFragmentDirections
+                    .actionResidentListFragmentToResidentProfileFragment()
+            )
     }
 }

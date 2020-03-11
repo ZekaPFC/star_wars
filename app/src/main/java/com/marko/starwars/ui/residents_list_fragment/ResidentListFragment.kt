@@ -13,7 +13,6 @@ import com.marko.starwars.data.resident.Resident
 import com.marko.starwars.di.component.FragmentComponent
 import com.marko.starwars.di.scope.FragmentScope
 import com.marko.starwars.ui.MainActivity
-import com.marko.starwars.ui.utils.SizeUtil
 import kotlinx.android.synthetic.main.resident_list_fragment.*
 import javax.inject.Inject
 
