@@ -82,15 +82,6 @@ class PlanetViewModel @Inject constructor(
         )
     }
 
-    fun navigateToEnlargeProfilePicScreen(view: View) {
-        view.findNavController()
-            .navigate(
-                PlanetFragmentDirections.actionPlanetFragmentToEnlargedProfileImageFragment(
-                    _imageUrl.value!!
-                )
-            )
-    }
-
     private fun bindViews(planet: Planet) {
         val populationInMilion: Int = planet.population!!.toInt().div(10000000)
         _diameter.postValue(": ".plus(planet.diameter.toString()))
@@ -131,5 +122,14 @@ class PlanetViewModel @Inject constructor(
     fun navigateToResidentList(view: View) {
         view.findNavController()
             .navigate(PlanetFragmentDirections.actionPlanetFragmentToResidentListFragment())
+    }
+
+    fun navigateToEnlargeProfilePicScreen(view: View) {
+        view.findNavController()
+            .navigate(
+                PlanetFragmentDirections.actionPlanetFragmentToEnlargedProfileImageFragment(
+                    _imageUrl.value!!
+                )
+            )
     }
 }

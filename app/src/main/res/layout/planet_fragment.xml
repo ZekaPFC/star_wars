@@ -95,10 +95,9 @@
 
                         <TextView
                             android:id="@+id/tv_rotation_period"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/PlanetInfoText"
                             android:text="@{@string/rotation_period + viewmodel.rotationPeriodLiveData}"
-                            android:textSize="18sp" />
+                            />
 
                         <TextView
                             android:id="@+id/tv_orbital_period"
