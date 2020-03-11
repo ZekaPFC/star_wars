@@ -53,14 +53,10 @@ class PlanetViewModel @Inject constructor(
     private val _imageUrl = MutableLiveData<String>()
     val imageUrlLiveData: LiveData<String> = _imageUrl
 
-    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _isLiked = MutableLiveData<Boolean>()
     val isLikedLiveData: LiveData<Boolean> = _isLiked
 
-    private val _isDataAvailable = MutableLiveData<Boolean>()
-    val isDataAvailable: LiveData<Boolean> = _isDataAvailable
 
     init {
         getPlanet(10)
@@ -72,8 +68,8 @@ class PlanetViewModel @Inject constructor(
         compositeDisposable.add(planetRepository.refreshPlanet(id).subscribe({
             Log.d("planet", "Success")
         }, {
-            if (_isDataAvailable.value == false) {
-                noContentAvailable()
+            if (isDataAvailable.value == false) {
+                noDataAvailable()
             }
             Log.d("planet", it.localizedMessage)
         }))
@@ -87,26 +83,10 @@ class PlanetViewModel @Inject constructor(
                 showContent()
                 bindViews(it)
             }, {
-                noContentAvailable()
+                noDataAvailable()
                 it.localizedMessage
             })
         )
-    }
-
-    private fun startLoading() {
-        _isLoading.value = true
-        _isDataAvailable.value = false
-    }
-
-    private fun noContentAvailable() {
-        _isLoading.value = false
-        _isDataAvailable.value = false
-    }
-
-    private fun showContent() {
-        _isDataAvailable.value = true
-        _isLoading.value = false
-
     }
 
     fun navigateToEnlargeProfilePicScreen(view: View) {

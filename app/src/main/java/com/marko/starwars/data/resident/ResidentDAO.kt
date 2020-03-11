@@ -15,7 +15,7 @@ abstract class ResidentDAO {
     abstract fun getResident(residentId: Int): Single<Resident>
 
     @Query("SELECT * FROM resident")
-    abstract fun getResidents(): Observable<List<Resident>>
+    abstract fun getResidents(): Single<List<Resident>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun saveResident(resident: Resident): Completable

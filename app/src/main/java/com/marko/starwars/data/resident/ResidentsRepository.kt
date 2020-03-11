@@ -16,7 +16,7 @@ class ResidentsRepository @Inject constructor(
     private val planetRemoteDS: PlanetRemoteDS
 ) {
 
-    fun getResidents(): Observable<List<Resident>> {
+    fun getResidents(): Single<List<Resident>> {
         return residentLocalDS.getResidents()
     }
 

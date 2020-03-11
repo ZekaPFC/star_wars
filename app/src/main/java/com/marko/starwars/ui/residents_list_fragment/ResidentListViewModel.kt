@@ -1,6 +1,5 @@
 package com.marko.starwars.ui.residents_list_fragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.marko.starwars.data.resident.Resident
@@ -17,23 +16,35 @@ class ResidentListViewModel @Inject constructor(private val residentRepo: Reside
     val residentsLiveData: LiveData<List<Resident>> = _residents
 
     init {
+        startLoading()
         fetchResidentFromNetwork()
         getResidents()
     }
 
     private fun fetchResidentFromNetwork() {
         compositeDisposable.add(residentRepo.fetchResidents()
-            .subscribe(
-                { Log.d("resident", "fetched residents") },
-                { Log.d("resident", "error") }
-            ))
+            .subscribe {
+                if (isDataAvailable.value == null || isDataAvailable.value == false) {
+                    noDataAvailable()
+                }
+            })
     }
 
     private fun getResidents() {
         compositeDisposable.add(residentRepo.getResidents()
             .subscribe(
-                { _residents.value = it },
-                { Log.d("residentLocal", it.message) }
+                {
+                    _residents.value = it
+                    if (it.isNotEmpty()) {
+                        showContent()
+                    } else {
+                        noDataAvailable()
+                    }
+
+                },
+                {
+                    noDataAvailable()
+                }
             ))
     }
 }

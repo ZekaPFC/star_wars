@@ -19,7 +19,7 @@ class ResidentLocalDS @Inject constructor(private val appDatabase: AppDatabase) 
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun getResidents(): Observable<List<Resident>> {
+    fun getResidents(): Single<List<Resident>> {
         return appDatabase.residentDao()
             .getResidents()
             .subscribeOn(Schedulers.io())

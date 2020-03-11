@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marko.starwars.R
 import com.marko.starwars.data.resident.Resident
+import com.marko.starwars.databinding.ResidentListFragmentBinding
 import com.marko.starwars.di.component.FragmentComponent
 import com.marko.starwars.di.scope.FragmentScope
 import com.marko.starwars.ui.MainActivity
@@ -38,7 +39,10 @@ class ResidentListFragment : Fragment() {
         (activity as MainActivity).showAppBar()
         (activity as MainActivity).appBarTitle(getString(R.string.resident_list_title))
         fragmentComponent.inject(this)
-        return inflater.inflate(R.layout.resident_list_fragment, container, false)
+        val viewBinding = ResidentListFragmentBinding.inflate(inflater, container, false)
+        viewBinding.viewmodel = residentListViewModel
+        viewBinding.lifecycleOwner = this
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
