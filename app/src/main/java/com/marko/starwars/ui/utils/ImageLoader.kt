@@ -1,5 +1,6 @@
 package com.marko.starwars.ui.utils
 
+import android.content.Context
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
@@ -9,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class ImageLoader @Inject constructor() {
     companion object {
-        @BindingAdapter("imageUrl", "imageWidthInDp", "imageHeightInDp")
+        @BindingAdapter("imageUrl", "imageWidthInDp", "imageHeightInDp", requireAll = false)
         @JvmStatic
         fun loadImage(
             view: ImageView,
@@ -17,17 +18,31 @@ class ImageLoader @Inject constructor() {
             imageWidthInDp: Float,
             imageHeightInDp: Float
         ) {
-            val imageWidthInPx = SizeUtil.dpToPx(view.context, imageWidthInDp).toInt()
-            val imageHeightInPx = SizeUtil.dpToPx(view.context, imageHeightInDp).toInt()
+            if (isSizeProvided(imageWidthInDp, imageHeightInDp)) {
+                val imageWidthInPx = convertDpToPx(view.context, imageWidthInDp)
+                val imageHeightInPx = convertDpToPx(view.context, imageHeightInDp)
+                loadImageWithSize(imageWidthInPx, imageHeightInPx, view, imageUrl)
+            } else {
+                loadImageWithoutSizeProvided(view, imageUrl)
+            }
+        }
+
+        private fun convertDpToPx(context: Context, dp: Float): Int {
+            return SizeUtil.dpToPx(context, dp).toInt()
+        }
+
+        private fun isSizeProvided(width: Float, height: Float): Boolean {
+            return width > 0 && height > 0
+        }
+
+        private fun loadImageWithSize(width: Int, height: Int, view: ImageView, imageUrl: String?) {
             Picasso.get()
                 .load(imageUrl)
-                .resize(imageWidthInPx, imageHeightInPx)
+                .resize(width, height)
                 .into(view)
         }
 
-        @BindingAdapter("imageUrl")
-        @JvmStatic
-        fun loadImageInWholeView(view: ImageView, imageUrl: String?) {
+        private fun loadImageWithoutSizeProvided(view: ImageView, imageUrl: String?) {
             Picasso.get()
                 .load(imageUrl)
                 .into(view)
