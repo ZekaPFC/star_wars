@@ -22,6 +22,11 @@ class ResidentsRepository @Inject constructor(
         return residentLocalDS.getResident(residentId)
     }
 
+    /**
+     * Resident obtaining mechanics.
+     * We first download planet with list of URLs for residents, then download resident one by one
+     * and save it in local DB
+     */
     fun fetchResidents(): Completable {
         var residentId = 0
         return planetRemoteDS.getPlanet(10)
