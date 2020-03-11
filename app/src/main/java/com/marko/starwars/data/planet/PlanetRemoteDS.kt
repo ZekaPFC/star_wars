@@ -3,7 +3,6 @@ package com.marko.starwars.data.planet
 import com.marko.starwars.data.rest.RestService
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
