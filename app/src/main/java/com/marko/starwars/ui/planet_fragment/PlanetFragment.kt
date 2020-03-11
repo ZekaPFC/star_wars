@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.marko.starwars.databinding.PlanetFragmentBinding
 import com.marko.starwars.di.component.FragmentComponent
 import com.marko.starwars.di.scope.FragmentScope
-import com.marko.starwars.databinding.PlanetFragmentBinding
 import com.marko.starwars.ui.MainActivity
 import javax.inject.Inject
 
@@ -17,6 +17,8 @@ class PlanetFragment : Fragment() {
     private lateinit var fragmentComponent: FragmentComponent
     @Inject
     lateinit var planetViewModel: PlanetViewModel
+
+    private lateinit var viewBinding: PlanetFragmentBinding
 
     override fun onResume() {
         super.onResume()
@@ -34,9 +36,13 @@ class PlanetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentComponent.inject(this)
-        val planetDataBinding = PlanetFragmentBinding.inflate(inflater, container, false)
-        planetDataBinding.viewmodel = planetViewModel
-        planetDataBinding.lifecycleOwner = this
-        return planetDataBinding.root
+        setupViewBinding(inflater, container)
+        return viewBinding.root
+    }
+
+    private fun setupViewBinding(layoutInflater: LayoutInflater, container: ViewGroup?) {
+        viewBinding = PlanetFragmentBinding.inflate(layoutInflater, container, false)
+        viewBinding.viewmodel = planetViewModel
+        viewBinding.lifecycleOwner = this
     }
 }

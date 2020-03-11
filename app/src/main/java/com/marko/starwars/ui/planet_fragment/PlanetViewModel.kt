@@ -1,6 +1,5 @@
 package com.marko.starwars.ui.planet_fragment
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,6 +17,8 @@ class PlanetViewModel @Inject constructor(
     private val planetRepository: PlanetRepository,
     private val prefUtil: PrefUtil
 ) : BaseViewModel() {
+    private val PLANET_ID = 10
+
     private val _planetContent = MutableLiveData<Planet>()
 
     private val _name: MutableLiveData<String> = MutableLiveData()
@@ -57,19 +58,16 @@ class PlanetViewModel @Inject constructor(
     val isLikedLiveData: LiveData<Boolean> = _isLiked
 
     init {
-        getPlanet(10)
-        refreshPlanet(10)
+        getPlanet(PLANET_ID)
+        refreshPlanet(PLANET_ID)
         _isLiked.value = isPlanetLiked()
     }
 
     private fun refreshPlanet(id: Int) {
-        compositeDisposable.add(planetRepository.refreshPlanet(id).subscribe({
-            Log.d("planet", "Success")
-        }, {
+        compositeDisposable.add(planetRepository.refreshPlanet(id).subscribe({}, {
             if (isDataAvailable.value == false) {
                 noDataAvailable()
             }
-            Log.d("planet", it.localizedMessage)
         }))
     }
 
@@ -80,10 +78,7 @@ class PlanetViewModel @Inject constructor(
                 _planetContent.value = it
                 showContent()
                 bindViews(it)
-            }, {
-                noDataAvailable()
-                it.localizedMessage
-            })
+            }, { noDataAvailable() })
         )
     }
 
@@ -112,15 +107,16 @@ class PlanetViewModel @Inject constructor(
     }
 
     fun likePlanet() {
-        if (_isLiked.value == false || _isLiked.value == null) {
+        if (!isPlanetLiked()) {
             compositeDisposable.add(
-                planetRepository.likePlanet(
-                    10, _planetContent.value!!.likes.plus(1)
-                ).subscribe({
-                    setLikePlanetDrawable()
-                }, { Log.d("LikeError", it.localizedMessage) })
+                planetRepository.likePlanet(10, increaseNumberOfLikesAndRetrieve())
+                    .subscribe({ setLikePlanetDrawable() }, {})
             )
         }
+    }
+
+    private fun increaseNumberOfLikesAndRetrieve(): Int {
+        return _planetContent.value!!.likes.plus(1)
     }
 
     private fun isPlanetLiked(): Boolean {
