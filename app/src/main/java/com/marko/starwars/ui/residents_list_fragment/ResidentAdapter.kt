@@ -8,7 +8,6 @@ import com.marko.starwars.data.resident.Resident
 import com.marko.starwars.databinding.ResidentListItemBinding
 import javax.inject.Inject
 
-
 class ResidentAdapter @Inject constructor(
     private val context: Context,
     private val residents: MutableList<Resident>
@@ -38,10 +37,4 @@ class ResidentAdapter @Inject constructor(
         this.residents.addAll(residents)
         notifyDataSetChanged()
     }
-
-    fun addItem(resident: Resident) {
-        residents.add(resident)
-        notifyItemInserted(residents.size - 1)
-    }
-
 }

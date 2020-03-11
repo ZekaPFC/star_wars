@@ -9,7 +9,6 @@ import retrofit2.http.Path
 import retrofit2.http.Url
 
 interface RestService {
-
     @GET("planets/{id}")
     fun getPlanet(@Path("id") id: Int): Single<Planet>
 

@@ -10,7 +10,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [SubcomponentModule::class, NetworkModule::class,AppModule::class])
 interface AppComponent {
-
     fun fragmentComponent():FragmentComponent.Factory
     fun inject(mainActivity: MainActivity)
 }

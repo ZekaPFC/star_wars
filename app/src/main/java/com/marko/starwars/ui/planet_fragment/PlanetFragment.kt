@@ -14,7 +14,6 @@ import javax.inject.Inject
 
 @FragmentScope
 class PlanetFragment : Fragment() {
-
     private lateinit var fragmentComponent: FragmentComponent
     @Inject
     lateinit var planetViewModel: PlanetViewModel
@@ -40,5 +39,4 @@ class PlanetFragment : Fragment() {
         planetDataBinding.lifecycleOwner = this
         return planetDataBinding.root
     }
-
 }

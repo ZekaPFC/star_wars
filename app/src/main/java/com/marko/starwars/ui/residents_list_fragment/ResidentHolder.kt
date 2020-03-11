@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 open class ResidentHolder @Inject constructor(private val viewDataBinding: ViewDataBinding) :
     RecyclerView.ViewHolder(viewDataBinding.root) {
-
     fun bind(resident: Resident) {
         viewDataBinding.setVariable(BR.resident, resident)
         viewDataBinding.executePendingBindings()

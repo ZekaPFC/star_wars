@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import com.marko.starwars.data.database.AppDatabase
 import com.marko.starwars.data.resident.Resident
-import com.marko.starwars.ui.utils.SizeUtil
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

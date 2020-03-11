@@ -3,8 +3,7 @@ package com.marko.starwars.ui.utils
 import android.content.Context
 import android.util.TypedValue
 
-class SizeUtil() {
-
+class SizeUtil {
     companion object {
         fun dpToPx(context: Context,dp: Float): Float {
             return TypedValue.applyDimension(
@@ -14,5 +13,4 @@ class SizeUtil() {
             )
         }
     }
-
 }

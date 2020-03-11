@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 @FragmentScope
 class ResidentProfileFragment : Fragment() {
-
     @Inject
     lateinit var residentProfileViewModel: ResidentProfileViewModel
 

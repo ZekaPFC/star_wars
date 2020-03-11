@@ -6,14 +6,7 @@ import com.marko.starwars.di.component.DaggerAppComponent
 import com.marko.starwars.di.module.AppModule
 
 class BaseApp : Application() {
-
     val appComponent: AppComponent = DaggerAppComponent.builder()
         .appModule(AppModule(this))
         .build()
-
-    override fun onCreate() {
-        super.onCreate()
-
-    }
-
 }

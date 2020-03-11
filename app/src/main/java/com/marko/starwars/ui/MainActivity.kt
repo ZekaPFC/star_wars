@@ -10,7 +10,6 @@ import com.marko.starwars.base.BaseApp
 import com.marko.starwars.di.component.AppComponent
 
 class MainActivity : AppCompatActivity() {
-
     lateinit var appComponent: AppComponent
     private lateinit var navController: NavController
 

@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.profile_image_fragment.*
 
 @FragmentScope
 class EnlargedProfileImageFragment : Fragment() {
-
-
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).hideAppBar()
@@ -44,5 +42,4 @@ class EnlargedProfileImageFragment : Fragment() {
     fun close() {
         findNavController().navigateUp()
     }
-
 }

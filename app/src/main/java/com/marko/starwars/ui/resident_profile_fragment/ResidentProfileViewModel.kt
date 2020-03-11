@@ -11,7 +11,6 @@ import javax.inject.Inject
 @FragmentScope
 class ResidentProfileViewModel @Inject constructor(private val residentRepo: ResidentsRepository) :
     BaseViewModel() {
-
     private val _name = MutableLiveData<String>()
     val nameLiveData: LiveData<String> = _name
 

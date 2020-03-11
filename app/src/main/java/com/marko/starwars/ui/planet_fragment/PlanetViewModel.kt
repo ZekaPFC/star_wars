@@ -53,10 +53,8 @@ class PlanetViewModel @Inject constructor(
     private val _imageUrl = MutableLiveData<String>()
     val imageUrlLiveData: LiveData<String> = _imageUrl
 
-
     private val _isLiked = MutableLiveData<Boolean>()
     val isLikedLiveData: LiveData<Boolean> = _isLiked
-
 
     init {
         getPlanet(10)

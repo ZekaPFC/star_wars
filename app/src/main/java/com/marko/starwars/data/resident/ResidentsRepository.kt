@@ -2,7 +2,6 @@ package com.marko.starwars.data.resident
 
 import com.marko.starwars.data.planet.PlanetRemoteDS
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,12 +14,11 @@ class ResidentsRepository @Inject constructor(
     private val residentRemoteDS: ResidentRemoteDS,
     private val planetRemoteDS: PlanetRemoteDS
 ) {
-
     fun getResidents(): Single<List<Resident>> {
         return residentLocalDS.getResidents()
     }
 
-    fun getResident(residentId: Int):Single<Resident>{
+    fun getResident(residentId: Int): Single<Resident> {
         return residentLocalDS.getResident(residentId)
     }
 

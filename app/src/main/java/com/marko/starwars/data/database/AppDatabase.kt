@@ -9,9 +9,6 @@ import com.marko.starwars.data.resident.ResidentDAO
 
 @Database(entities = [Planet::class, Resident::class],version = 1)
 abstract class AppDatabase(): RoomDatabase() {
-
     abstract fun planetDao(): PlanetDAO
     abstract fun residentDao(): ResidentDAO
-
-
 }
