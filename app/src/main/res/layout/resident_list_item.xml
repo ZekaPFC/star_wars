@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
-
         <variable
             name="resident"
             type="com.marko.starwars.data.resident.Resident" />
@@ -62,11 +60,7 @@
                     style="@style/ResidentInfoText"
                     android:drawableStart="@drawable/ic_calendar"
                     android:text="@{resident.birthYear}" />
-
             </LinearLayout>
-
         </RelativeLayout>
-
-
     </androidx.cardview.widget.CardView>
 </layout>

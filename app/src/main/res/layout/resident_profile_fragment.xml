@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
-
         <variable
             name="viewmodel"
             type="com.marko.starwars.ui.resident_profile_fragment.ResidentProfileViewModel" />
@@ -106,7 +104,6 @@
                     android:layout_marginTop="16dp"
                     android:text="@{@string/gender + ':' + @string/space + viewmodel.genderLiveData}"
                     android:textSize="18sp" />
-
             </LinearLayout>
         </LinearLayout>
 
