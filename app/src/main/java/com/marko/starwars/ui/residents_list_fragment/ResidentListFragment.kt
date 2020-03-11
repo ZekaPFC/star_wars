@@ -26,6 +26,8 @@ class ResidentListFragment : Fragment() {
     @Inject
     lateinit var residentListViewModel: ResidentListViewModel
 
+    private lateinit var viewBinding: ResidentListFragmentBinding
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         fragmentComponent = (context as MainActivity).appComponent.fragmentComponent().create()
@@ -36,12 +38,9 @@ class ResidentListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as MainActivity).showAppBar()
-        (activity as MainActivity).appBarTitle(getString(R.string.resident_list_title))
         fragmentComponent.inject(this)
-        val viewBinding = ResidentListFragmentBinding.inflate(inflater, container, false)
-        viewBinding.viewmodel = residentListViewModel
-        viewBinding.lifecycleOwner = this
+        setupAppBar()
+        setupViewBinding(inflater, container)
         return viewBinding.root
     }
 
@@ -49,6 +48,17 @@ class ResidentListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         observeResidentData()
+    }
+
+    private fun setupAppBar() {
+        (activity as MainActivity).showAppBar()
+        (activity as MainActivity).appBarTitle(getString(R.string.resident_list_title))
+    }
+
+    private fun setupViewBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        viewBinding = ResidentListFragmentBinding.inflate(inflater, container, false)
+        viewBinding.viewmodel = residentListViewModel
+        viewBinding.lifecycleOwner = this
     }
 
     private fun setupRecyclerView() {
