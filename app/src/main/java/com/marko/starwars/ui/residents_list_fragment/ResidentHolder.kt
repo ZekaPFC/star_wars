@@ -16,11 +16,11 @@ open class ResidentHolder @Inject constructor(private val viewDataBinding: ViewD
         viewDataBinding.executePendingBindings()
     }
 
-    fun navigateToAction(view: View) {
+    fun navigateToAction(view: View,residentId: Int) {
         view.findNavController()
             .navigate(
                 ResidentListFragmentDirections
-                    .actionResidentListFragmentToResidentProfileFragment()
+                    .actionResidentListFragmentToResidentProfileFragment(residentId)
             )
     }
 }

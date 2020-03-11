@@ -37,7 +37,7 @@ class ResidentProfileViewModel @Inject constructor(private val residentRepo: Res
     val birthYearLiveData: LiveData<String> = _birthYear
 
     private val _imageUrl = MutableLiveData<String>()
-    val imageUrlLiveData: LiveData<String> =_imageUrl
+    val imageUrlLiveData: LiveData<String> = _imageUrl
 
     fun getResidentById(residentId: Int) {
         compositeDisposable.add(
@@ -56,6 +56,6 @@ class ResidentProfileViewModel @Inject constructor(private val residentRepo: Res
         _eyeColor.value = resident.eyeColor
         _mass.value = resident.mass
         _birthYear.value = resident.birthYear
-        _imageUrl.value= resident.imageUrl
+        _imageUrl.value = resident.imageUrl
     }
 }

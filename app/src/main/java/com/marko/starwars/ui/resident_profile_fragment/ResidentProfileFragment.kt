@@ -27,7 +27,7 @@ class ResidentProfileFragment : Fragment() {
         val viewBinding = ResidentProfileFragmentBinding.inflate(inflater, container, false)
         viewBinding.viewmodel = residentProfileViewModel
         viewBinding.lifecycleOwner = this
-        residentProfileViewModel.getResidentById(72)
+        residentProfileViewModel.getResidentById(73)
         return viewBinding.root
     }
 }

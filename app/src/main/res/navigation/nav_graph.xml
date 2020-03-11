@@ -45,8 +45,7 @@
         android:label="ResidentProfileFragment" >
         <argument
             android:name="residentId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            app:argType="integer" />
     </fragment>
 
 </navigation>
